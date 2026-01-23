@@ -2,6 +2,7 @@ package com.github.lybgeek.plugin;
 
 
 import com.github.lybgeek.plugin.util.PluginPathUtils;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.pf4j.*;
 
@@ -11,8 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+@Getter
 @Slf4j
-public class PluginManagerWapper extends DefaultPluginManager{
+public class PluginManagerWapper extends DefaultPluginManager {
 
     private final PluginManager pluginManager;
 
@@ -28,8 +30,8 @@ public class PluginManagerWapper extends DefaultPluginManager{
     }
 
 
-    public void addPluginPath(String... pluginPath){
-        if(pluginPath!= null && pluginPath.length >= 1){
+    public void addPluginPath(String... pluginPath) {
+        if (pluginPath != null && pluginPath.length >= 1) {
             for (String path : pluginPath) {
                 initPlugin(path);
             }
@@ -38,22 +40,22 @@ public class PluginManagerWapper extends DefaultPluginManager{
 
 
     @Override
-    public <T> List<T> getExtensions(Class<T> type){
+    public <T> List<T> getExtensions(Class<T> type) {
         return pluginManager.getExtensions(type);
     }
 
     @Override
-   public <T> List<T> getExtensions(Class<T> type, String pluginId){
+    public <T> List<T> getExtensions(Class<T> type, String pluginId) {
         return pluginManager.getExtensions(type, pluginId);
-   }
+    }
 
-   @Override
-   public PluginState stopPlugin(String pluginId){
+    @Override
+    public PluginState stopPlugin(String pluginId) {
         return pluginManager.stopPlugin(pluginId);
     }
 
     @Override
-    public boolean disablePlugin(String pluginId){
+    public boolean disablePlugin(String pluginId) {
         return pluginManager.disablePlugin(pluginId);
     }
 
@@ -65,7 +67,7 @@ public class PluginManagerWapper extends DefaultPluginManager{
      * @throws PluginRuntimeException if something goes wrong
      */
     @Override
-    public boolean enablePlugin(String pluginId){
+    public boolean enablePlugin(String pluginId) {
         return pluginManager.enablePlugin(pluginId);
     }
 
@@ -77,36 +79,31 @@ public class PluginManagerWapper extends DefaultPluginManager{
      * @throws PluginRuntimeException if something goes wrong
      */
     @Override
-    public boolean deletePlugin(String pluginId){
+    public boolean deletePlugin(String pluginId) {
         return pluginManager.deletePlugin(pluginId);
     }
 
 
-
-    private void initPlugin(String pluginPath){
+    private void initPlugin(String pluginPath) {
         try {
             Path path = PluginPathUtils.getPluginPath(pluginPath);
-            if(!isLoaded(path)){
+            if (!isLoaded(path)) {
                 pluginManager.loadPlugin(path);
             }
             pluginManager.startPlugins();
         } catch (Exception e) {
-           log.error("load plugin error",e);
+            log.error("load plugin error", e);
         }
     }
 
-    public boolean isLoaded(Path pluginPath){
+    public boolean isLoaded(Path pluginPath) {
         PluginDescriptorFinder pluginDescriptorFinder = getPluginDescriptorFinder();
         PluginDescriptor pluginDescriptor = pluginDescriptorFinder.find(pluginPath);
         validatePluginDescriptor(pluginDescriptor);
-
         // Check there are no loaded plugins with the retrieved id
         String pluginId = pluginDescriptor.getPluginId();
         return pluginManager.getPlugin(pluginId) != null;
 
     }
 
-    public PluginManager getPluginManager() {
-        return pluginManager;
-    }
 }

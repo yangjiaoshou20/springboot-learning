@@ -2,7 +2,6 @@ package com.github.lybgeek.pf4j.model;
 
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class PluginConfig {
@@ -15,7 +14,6 @@ public class PluginConfig {
     public static final String PLUGIN_DEPENDENCIES = "plugin.dependencies";
     public static final String PLUGIN_REQUIRES = "plugin.requires";
     public static final String PLUGIN_LICENSE = "plugin.license";
-
 
 
     private String id;
@@ -99,16 +97,16 @@ public class PluginConfig {
         this.license = license;
     }
 
-    public Map<String,String> convertToMap(){
-    	Map<String,String> map = new HashMap<>();
-    	map.put(PLUGIN_ID, id);
-    	map.put(PLUGIN_DESCRIPTION, description);
-    	map.put(PLUGIN_CLASS, className);
-    	map.put(PLUGIN_VERSION, version);
-    	map.put(PLUGIN_PROVIDER, provider);
-    	map.put(PLUGIN_DEPENDENCIES, dependencies);
+    public Map<String, String> convertToMap() {
+        Map<String, String> map = new HashMap<>();
+        map.put(PLUGIN_ID, id);
+        map.put(PLUGIN_DESCRIPTION, description);
+        map.put(PLUGIN_CLASS, className);
+        map.put(PLUGIN_VERSION, version);
+        map.put(PLUGIN_PROVIDER, provider);
+        map.put(PLUGIN_DEPENDENCIES, dependencies);
         map.put(PLUGIN_LICENSE, license);
-    	map.put(PLUGIN_REQUIRES, requires);
-    	return map;
+        map.put(PLUGIN_REQUIRES, requires);
+        return map;
     }
 }

@@ -15,24 +15,16 @@
  */
 package com.github.lybgeek.plugin.spring.injector;
 
-import com.github.lybgeek.plugin.spring.delegete.SpringExtensionFactoryDelegete;
-import com.github.lybgeek.plugin.spring.delegete.SpringPluginManagerDelegete;
-import org.pf4j.ExtensionFactory;
 import org.pf4j.PluginWrapper;
 import org.pf4j.spring.SpringPluginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator;
-import org.springframework.aop.config.AopConfigUtils;
 import org.springframework.beans.factory.support.*;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationBeanNameGenerator;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
-import java.util.function.Supplier;
 
 /**
  * @author Decebal Suiu
@@ -49,7 +41,6 @@ public class SpringExtensionsInjector {
         this.springPluginManager = springPluginManager;
         this.beanFactory = beanFactory;
     }
-
 
 
     public void injectExtensions() {
@@ -73,12 +64,12 @@ public class SpringExtensionsInjector {
     }
 
 
-    public void removePluginFromSpring(Class<?> extensionClass,String pluginId) {
+    public void removePluginFromSpring(Class<?> extensionClass, String pluginId) {
         try {
             Object bean = springPluginManager.getApplicationContext().getBean(pluginId, extensionClass);
             springPluginManager.getApplicationContext().getAutowireCapableBeanFactory().destroyBean(bean);
         } catch (Exception e) {
-            log.error("Destroy bean error",e);
+            log.error("Destroy bean error", e);
         }
 
     }
@@ -105,7 +96,7 @@ public class SpringExtensionsInjector {
      * The bean name is the extension class name.
      * Override this method if you wish other register strategy.
      */
-    protected void registerExtension(Class<?> extensionClass,String...pluginIds) {
+    protected void registerExtension(Class<?> extensionClass, String... pluginIds) {
         Map<String, ?> extensionBeanMap = springPluginManager.getApplicationContext().getBeansOfType(extensionClass);
         if (extensionBeanMap.isEmpty()) {
             registerPlugin2Spring(extensionClass, pluginIds);
@@ -120,7 +111,7 @@ public class SpringExtensionsInjector {
         String pluginBeanName = getBeanName(extensionClass);
         beanFactory.registerSingleton(pluginBeanName, extension);
 
-        if(pluginIds != null && pluginIds.length > 0){
+        if (pluginIds != null && pluginIds.length > 0) {
             beanFactory.registerAlias(pluginBeanName, pluginIds[0]);
         }
     }

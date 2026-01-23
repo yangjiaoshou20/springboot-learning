@@ -29,7 +29,8 @@
             <artifactId>springboot-pf4j-auto-config</artifactId>
             <version>${project.version}</version>
             <scope>system</scope>
-            <systemPath>E:/springboot-pf4j/springboot-pf4j-auto-config/target/springboot-pf4j-auto-config-1.0-SNAPSHOT.jar</systemPath>
+<!--            <systemPath>E:/springboot-pf4j/springboot-pf4j-auto-config/target/springboot-pf4j-auto-config-1.0-SNAPSHOT.jar</systemPath>-->
+            <systemPath>D:\develop\JetBrains\IdeaProjects\myProject\springboot-learning\springboot-pf4j\springboot-pf4j-auto-config\target\springboot-pf4j-auto-config-0.0.1-SNAPSHOT.jar</systemPath>
         </dependency>
     </dependencies>
 

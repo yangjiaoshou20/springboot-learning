@@ -17,7 +17,6 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 public class Pf4jSpringTest {
 
-
     @Autowired
     @Qualifier("echo-spring-plugin")
     private EchoService echoService;
@@ -28,13 +27,13 @@ public class Pf4jSpringTest {
 
 
     @Test
-    public void testSpringPlugin(){
+    public void testSpringPlugin() {
         System.out.println(echoService.echo("test123"));
     }
 
 
     @Test
-    public void testSpringPlugins(){
+    public void testSpringPlugins() {
         for (EchoService service : echoServices) {
             System.out.println(service.echo("lybgeek"));
         }

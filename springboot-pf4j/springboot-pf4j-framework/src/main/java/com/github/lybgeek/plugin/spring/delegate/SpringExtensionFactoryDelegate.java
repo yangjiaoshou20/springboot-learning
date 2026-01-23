@@ -1,4 +1,4 @@
-package com.github.lybgeek.plugin.spring.delegete;
+package com.github.lybgeek.plugin.spring.delegate;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -6,16 +6,15 @@ import org.pf4j.PluginManager;
 import org.pf4j.spring.SpringExtensionFactory;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;
-
 import java.util.Optional;
 
 @Slf4j
-public class SpringExtensionFactoryDelegete extends SpringExtensionFactory {
-    public SpringExtensionFactoryDelegete(PluginManager pluginManager) {
+public class SpringExtensionFactoryDelegate extends SpringExtensionFactory {
+    public SpringExtensionFactoryDelegate(PluginManager pluginManager) {
         super(pluginManager);
     }
 
-    public SpringExtensionFactoryDelegete(PluginManager pluginManager, boolean autowire) {
+    public SpringExtensionFactoryDelegate(PluginManager pluginManager, boolean autowire) {
         super(pluginManager, autowire);
     }
 
@@ -27,8 +26,7 @@ public class SpringExtensionFactoryDelegete extends SpringExtensionFactory {
     @Override
     protected <T> T createWithSpring(Class<T> extensionClass, ApplicationContext applicationContext) {
         final AutowireCapableBeanFactory beanFactory = applicationContext.getAutowireCapableBeanFactory();
-
-        log.debug("Instantiate extension class '" + nameOf(extensionClass) + "' ");
+        log.debug("Instantiate extension class '{}' ", nameOf(extensionClass));
         return beanFactory.createBean(extensionClass);
     }
 

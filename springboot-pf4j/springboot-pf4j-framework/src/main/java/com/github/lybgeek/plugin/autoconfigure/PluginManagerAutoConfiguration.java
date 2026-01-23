@@ -3,7 +3,7 @@ package com.github.lybgeek.plugin.autoconfigure;
 
 import com.github.lybgeek.plugin.PluginManagerWapper;
 import com.github.lybgeek.plugin.properties.PluginProperties;
-import com.github.lybgeek.plugin.spring.delegete.SpringPluginManagerDelegete;
+import com.github.lybgeek.plugin.spring.delegate.SpringPluginManagerDelegate;
 import org.pf4j.spring.SpringPluginManager;
 import org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -20,19 +20,18 @@ public class PluginManagerAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public SpringPluginManager springPluginManager(PluginProperties pluginProperties, AnnotationAwareAspectJAutoProxyCreator annotationAwareAspectJAutoProxyCreator){
-        SpringPluginManagerDelegete springPluginManager = new SpringPluginManagerDelegete();
-        if(StringUtils.hasText(pluginProperties.getDir())){
-            springPluginManager = new SpringPluginManagerDelegete(Paths.get(pluginProperties.getDir()));
+    public SpringPluginManager springPluginManager(PluginProperties pluginProperties, AnnotationAwareAspectJAutoProxyCreator annotationAwareAspectJAutoProxyCreator) {
+        SpringPluginManagerDelegate springPluginManager = new SpringPluginManagerDelegate();
+        if (StringUtils.hasText(pluginProperties.getDir())) {
+            springPluginManager = new SpringPluginManagerDelegate(Paths.get(pluginProperties.getDir()));
         }
-
         return springPluginManager;
     }
 
 
     @Bean
     @ConditionalOnMissingBean
-    public PluginManagerWapper pluginManagerWapper(SpringPluginManager springPluginManager){
+    public PluginManagerWapper pluginManagerWapper(SpringPluginManager springPluginManager) {
         return new PluginManagerWapper(springPluginManager);
     }
 }

@@ -24,12 +24,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>springboot-pf4j-framework</artifactId>
-            <version>${project.version}</version>
 
-        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>springboot-plugin-echo-common</artifactId>
@@ -40,12 +35,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
 
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -53,10 +48,10 @@
             <version>${project.version}</version>
         </dependency>
 
-
-
-
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>springboot-pf4j-framework</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
-
-
 </project>

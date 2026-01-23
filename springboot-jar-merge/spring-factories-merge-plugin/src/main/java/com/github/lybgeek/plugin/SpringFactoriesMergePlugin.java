@@ -13,10 +13,10 @@ import org.apache.maven.plugins.annotations.Parameter;
 @Mojo(name = "springFactoriesMerge", defaultPhase = LifecyclePhase.PACKAGE)
 public class SpringFactoriesMergePlugin extends AbstractMojo {
 
-    @Parameter(required = true)
+    @Parameter(required = true,name = "factoriesBaseClassPathDir")
     private String factoriesBaseClassPathDir;
 
-    @Parameter(required = true)
+    @Parameter(required = true,name = "finalJarName")
     private String finalJarName;
 
     @SneakyThrows
