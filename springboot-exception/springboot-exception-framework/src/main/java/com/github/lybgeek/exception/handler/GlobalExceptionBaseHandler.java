@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +30,9 @@ public class GlobalExceptionBaseHandler {
     // 运行期异常
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public AjaxResult handleException(Exception e) {
+    public AjaxResult<?> handleException(Exception e) {
         String msg = e.getMessage();
-        if(StringUtils.isEmpty(msg)){
+        if (StringUtils.isEmpty(msg)) {
             msg = "服务端异常";
         }
         log.error(msg, e);
@@ -42,106 +41,85 @@ public class GlobalExceptionBaseHandler {
 
 
     @ExceptionHandler(BizException.class)
-    public AjaxResult handleException(BizException e)
-    {
+    public AjaxResult<?> handleException(BizException e) {
         return AjaxResult.error(e.getMessage(), e.getErrorCode());
     }
 
 
     /**
-     *参数验证失败
-     * @param e
-     * @return
+     * 参数验证失败
      */
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public AjaxResult handleException(ConstraintViolationException e)
-    {
+    public AjaxResult<?> handleException(ConstraintViolationException e) {
         log.error("参数验证失败", e);
         return AjaxResult.error("参数验证失败", HttpStatus.BAD_REQUEST.value());
     }
 
     /**
      * 请求对象属性不满足校验规则
-     * @param e
-     * @return
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public AjaxResult handleException(MethodArgumentNotValidException e)
-    {
+    public AjaxResult<?> handleException(MethodArgumentNotValidException e) {
         BindingResult result = e.getBindingResult();
         return getValidateExceptionAjaxResult(e, result);
     }
 
     /**
      * 请求对象属性不满足校验规则
-     * @param e
-     * @return
      */
     @ExceptionHandler(BindException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public AjaxResult handleException(BindException e)
-    {
+    public AjaxResult<?> handleException(BindException e) {
         BindingResult result = e.getBindingResult();
         return getValidateExceptionAjaxResult(e, result);
     }
 
     /**
      * 参数校验异常
-     * @param e
-     * @param result
-     * @return
      */
-    private AjaxResult getValidateExceptionAjaxResult(Exception e, BindingResult result) {
+    private AjaxResult<List<ValidMsg>> getValidateExceptionAjaxResult(Exception e, BindingResult result) {
         final List<FieldError> fieldErrors = result.getFieldErrors();
         List<ValidMsg> errorList = new ArrayList<>();
         for (FieldError error : fieldErrors) {
             errorList.add(new ValidMsg(null, error.getField(), error.getDefaultMessage()));
         }
         log.error("请求对象属性不满足校验规则", e);
-        return AjaxResult.error("请求对象属性不满足校验规则", HttpStatus.BAD_REQUEST.value());
+        return AjaxResult.error("请求对象属性不满足校验规则", HttpStatus.BAD_REQUEST.value(), null, errorList);
     }
 
     /**
-     *参数类型数据异常
-     * @param e
-     * @return
+     * 参数类型数据异常
      */
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public AjaxResult handleException(MethodArgumentTypeMismatchException e)
-    {
+    public AjaxResult<List<ValidMsg>> handleException(MethodArgumentTypeMismatchException e) {
         List<ValidMsg> errorList = new ArrayList<>();
         errorList.add(new ValidMsg("", e.getName(), e.getMessage()));
         log.error("参数类型数据异常", e);
-        return AjaxResult.error("参数类型数据异常", HttpStatus.BAD_REQUEST.value(),null,errorList);
+        return AjaxResult.error("参数类型数据异常", HttpStatus.BAD_REQUEST.value(), null, errorList);
     }
+
     /**
-     *参数丢失异常
-     * @param e
-     * @return
+     * 参数丢失异常
      */
     @ExceptionHandler(MissingServletRequestParameterException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public AjaxResult handleException(MissingServletRequestParameterException e)
-    {
+    public AjaxResult<List<ValidMsg>> handleException(MissingServletRequestParameterException e) {
         List<ValidMsg> errorList = new ArrayList<>();
         errorList.add(new ValidMsg("", e.getParameterName(), e.getMessage()));
         log.error("参数丢失异常", e);
         return AjaxResult.error("参数丢失异常",
-                HttpStatus.BAD_REQUEST.value(),null,errorList);
+                HttpStatus.BAD_REQUEST.value(), null, errorList);
     }
 
     /**
      * 消息不可读异常
-     * @param e
-     * @return
      */
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public AjaxResult handleException(HttpMessageNotReadableException e)
-    {
+    public AjaxResult<?> handleException(HttpMessageNotReadableException e) {
         String msg = ExceptionUtil.getExceptionMessage(e);
         log.error(msg, e);
         return AjaxResult.error(msg,

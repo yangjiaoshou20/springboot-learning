@@ -24,10 +24,9 @@ import java.sql.SQLException;
 public class GlobalExceptionDbHandler {
 
 
-
-
     /**
      * 数据库异常
+     *
      * @param e
      * @return
      */
@@ -39,18 +38,18 @@ public class GlobalExceptionDbHandler {
     public AjaxResult dbException(Exception e) {
         String msg = ExceptionUtil.getExceptionMessage(e);
         log.error(msg, e);
-        return AjaxResult.error(msg,HttpStatus.BAD_REQUEST.value());
+        return AjaxResult.error(msg, HttpStatus.BAD_REQUEST.value());
     }
 
     /**
      * 数据库中已存在该记录
+     *
      * @param e
      * @return
      */
     @ExceptionHandler(DuplicateKeyException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public AjaxResult handleException(DuplicateKeyException e)
-    {
+    public AjaxResult handleException(DuplicateKeyException e) {
         log.error("数据库中已存在该记录", e);
         return AjaxResult.error("数据库中已存在该记录", HttpStatus.CONFLICT.value());
     }

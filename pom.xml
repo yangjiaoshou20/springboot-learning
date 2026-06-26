@@ -54,7 +54,7 @@
 <!--        <module>springboot-spi-enhance</module>-->
 <!--        <module>springboot-desensitization</module>-->
 <!--        <module>springboot-circuit-breaker</module>-->
-<!--        <module>springboot-exception</module>-->
+        <module>springboot-exception</module>
 <!--        <module>springboot-proguard</module>-->
 <!--        <module>springboot-sync-apollo</module>-->
 <!--        <module>springboot-transaction-invalid-case</module>-->
