@@ -6,9 +6,9 @@ import com.github.lybgeek.exception.model.ValidMsg;
 import com.github.lybgeek.exception.util.ExceptionUtil;
 import com.github.lybgeek.resp.model.AjaxResult;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +28,42 @@ import java.util.List;
 @Slf4j
 public class GlobalExceptionBaseHandler {
 
-    // 运行期异常
+
+    /**
+     * 开发环境：处理未知异常，返回完整堆栈信息（方便排查问题）
+     */
+    @Profile("dev")
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public AjaxResult<?> handleException(Exception e) {
-        String msg = e.getMessage();
-        if (StringUtils.isEmpty(msg)) {
-            msg = "服务端异常";
-        }
-        log.error(msg, e);
-        return AjaxResult.error(msg, HttpStatus.INTERNAL_SERVER_ERROR.value());
+    public AjaxResult<?> handleExceptionDev(Exception e) {
+        log.error("发生未知异常：", e);
+        // 拼接完整的堆栈信息
+        String stackTrace = ExceptionUtil.getStackTraceAsString(e);
+        // 返回错误码和堆栈信息（只在开发环境返回）
+        return AjaxResult.error("开发环境-未知异常：" + stackTrace, HttpStatus.INTERNAL_SERVER_ERROR.value());
     }
+
+    /**
+     * 生产环境：处理未知异常，只返回模糊提示（避免泄露敏感信息）
+     */
+    @Profile("prod")
+    @ExceptionHandler(Exception.class)
+    public AjaxResult<?> handleExceptionProd(Exception e) {
+        log.error("发生未知异常：", e);
+        // 只返回模糊提示
+        return AjaxResult.error(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), HttpStatus.INTERNAL_SERVER_ERROR.value());
+    }
+
+//    // 运行期异常
+//    @ExceptionHandler(Exception.class)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    public AjaxResult<?> handleException(Exception e) {
+//        String msg = e.getMessage();
+//        if (StringUtils.isEmpty(msg)) {
+//            msg = "服务端异常";
+//        }
+//        log.error(msg, e);
+//        return AjaxResult.error(msg, HttpStatus.INTERNAL_SERVER_ERROR.value());
+//    }
 
 
     @ExceptionHandler(BizException.class)

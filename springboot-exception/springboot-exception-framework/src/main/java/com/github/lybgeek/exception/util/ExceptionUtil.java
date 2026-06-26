@@ -1,6 +1,7 @@
 package com.github.lybgeek.exception.util;
 
 import org.apache.commons.lang3.StringUtils;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -31,5 +32,16 @@ public class ExceptionUtil {
         return StringUtils.defaultString(msg);
     }
 
-
+    public static String getStackTraceAsString(Throwable e) {
+        if (e == null) {
+            return"";
+        }
+        // 用StringWriter和PrintWriter来获取堆栈信息
+        try (StringWriter sw = new StringWriter(); PrintWriter pw = new PrintWriter(sw)) {
+            e.printStackTrace(pw);
+            return sw.toString();
+        } catch (IOException ex) {
+            return"获取堆栈信息失败";
+        }
+    }
 }
