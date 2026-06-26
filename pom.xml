@@ -111,7 +111,9 @@
 <!--        <module>springboot-togglz</module>-->
         <module>springboot-pf4j</module>
         <module>springboot-request-log</module>
-<!--        <module>springboot-swagger-parse</module>-->
+        <module>springboot-spring-security</module>
+        <module>springboot-spring-security/springboot-spring-security-01</module>
+        <!--        <module>springboot-swagger-parse</module>-->
 <!--        <module>springboot-chain</module>-->
 <!--        <module>springboot-encrypt</module>-->
 <!--        <module>springboot-sse</module>-->
