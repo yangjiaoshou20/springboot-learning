@@ -7,7 +7,7 @@
 2、核心方法
 
 javax.annotation.processing.AbstractProcessor.process这个方法
-主要是用来生成class模板文件或者一些配置文件比如SPI文件或者spring.fatctories文件
+主要是用来生成class模板文件或者一些配置文件比如SPI文件或者spring.factories文件
 通过roundEnv.processingOver()来判断是否处理结束
 
 javax.annotation.processing.AbstractProcessor.getSupportedAnnotationTypes这个方法用来指定要处理哪些注解

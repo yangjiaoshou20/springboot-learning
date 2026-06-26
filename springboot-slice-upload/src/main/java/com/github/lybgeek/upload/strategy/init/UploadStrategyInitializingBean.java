@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class UploadStrategyInitializingBean implements InitializingBean {
 
   @Override
-  public void afterPropertiesSet() throws Exception {
+  public void afterPropertiesSet() {
     log.info("init uploadStrategy ...");
     UploadContext.INSTANCE.init();
   }

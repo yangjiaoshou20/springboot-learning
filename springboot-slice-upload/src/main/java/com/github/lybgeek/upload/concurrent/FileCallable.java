@@ -9,21 +9,18 @@ import java.util.concurrent.Callable;
 
 public class FileCallable implements Callable<FileUploadDTO> {
 
-  private final UploadModeEnum mode;
+    private final UploadModeEnum mode;
 
-  private final FileUploadRequestDTO param;
+    private final FileUploadRequestDTO param;
 
-  public FileCallable(UploadModeEnum mode,
-      FileUploadRequestDTO param) {
+    public FileCallable(UploadModeEnum mode,
+                        FileUploadRequestDTO param) {
+        this.mode = mode;
+        this.param = param;
+    }
 
-    this.mode = mode;
-    this.param = param;
-  }
-
-  @Override
-  public FileUploadDTO call() throws Exception {
-
-    FileUploadDTO fileUploadDTO = UploadContext.INSTANCE.getInstance(mode).sliceUpload(param);
-    return fileUploadDTO;
-  }
+    @Override
+    public FileUploadDTO call() throws Exception {
+        return UploadContext.INSTANCE.getInstance(mode).sliceUpload(param);
+    }
 }

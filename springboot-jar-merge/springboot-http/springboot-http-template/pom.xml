@@ -56,7 +56,7 @@
             </plugin>
 
             <plugin>
-                <groupId>${project.groupId}</groupId>
+                <groupId>com.github.lybgeek</groupId>
                 <artifactId>spring-factories-merge-plugin</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
                 <executions>

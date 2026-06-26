@@ -12,9 +12,9 @@ import java.util.concurrent.TimeUnit;
 public class EchoController {
 
     @RequestMapping("say/{sleep}")
-    public String echo(@PathVariable("sleep") long sleep, String msg)  {
+    public String echo(@PathVariable("sleep") long sleep, String msg) {
 
-        if(sleep == 0){
+        if (sleep == 0) {
             throw new IllegalArgumentException("sleep参数不能为0");
         }
 

@@ -9,14 +9,12 @@ import org.springframework.web.context.support.ServletRequestHandledEvent;
 public class RequestLogEventListener {
 
     @EventListener
-    public void listener(ServletRequestHandledEvent event){
-        log.info("request client ip :{},request method:{}",event.getClientAddress(),event.getMethod());
-       log.info("request url:{},cost time:{} ms",event.getRequestUrl(),event.getProcessingTimeMillis());
-       if(event.wasFailure()){
-           log.error("request fail,error msg:{}",event.getFailureCause());
-       }
-
-
-
+    public void listener(ServletRequestHandledEvent event) {
+        log.info("request client ip :{},request method:{}", event.getClientAddress(), event.getMethod());
+        log.info("request url:{},cost time:{} ms", event.getRequestUrl(), event.getProcessingTimeMillis());
+        if (event.wasFailure()) {
+            assert event.getFailureCause() != null;
+            log.error("request fail,error msg:{}", event.getFailureCause().getMessage(), event.getFailureCause());
+        }
     }
 }

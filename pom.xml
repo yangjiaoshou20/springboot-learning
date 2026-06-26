@@ -4,122 +4,122 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>springboot-outside-config</module>
-        <module>springboot-event-driven</module>
-        <module>springboot-stream-changeDbInfo</module>
-        <module>springboot-stream-saveLog</module>
-        <module>springboot-scan-annotation</module>
-        <module>springboot-dbtemplate-autoconfigure</module>
-        <module>springboot-dbtemplate</module>
-        <module>springboot-dbtemplate-starter</module>
-        <module>springboot-dbtemplate-test</module>
-        <module>springboot-mongodb</module>
-        <module>springboot-orm</module>
-        <module>springboot-dynamic-datasource</module>
-        <module>springboot-split-table</module>
-        <module>springboot-redis</module>
-        <module>springboot-elasticsearch</module>
-        <module>springboot-swagger</module>
-        <module>springboot-httpclient</module>
+<!--        <module>springboot-outside-config</module>-->
+<!--        <module>springboot-event-driven</module>-->
+<!--        <module>springboot-stream-changeDbInfo</module>-->
+<!--        <module>springboot-stream-saveLog</module>-->
+<!--        <module>springboot-scan-annotation</module>-->
+<!--        <module>springboot-dbtemplate-autoconfigure</module>-->
+<!--        <module>springboot-dbtemplate</module>-->
+<!--        <module>springboot-dbtemplate-starter</module>-->
+<!--        <module>springboot-dbtemplate-test</module>-->
+<!--        <module>springboot-mongodb</module>-->
+<!--        <module>springboot-orm</module>-->
+<!--        <module>springboot-dynamic-datasource</module>-->
+<!--        <module>springboot-split-table</module>-->
+<!--        <module>springboot-redis</module>-->
+<!--        <module>springboot-elasticsearch</module>-->
+<!--        <module>springboot-swagger</module>-->
+<!--        <module>springboot-httpclient</module>-->
         <module>springboot-slice-upload</module>
-        <module>springboot-office-preview</module>
-        <module>springboot-prometheus</module>
-        <module>springboot-downgrade</module>
-      <module>springboot-docker</module>
-      <module>springboot-exclude-web</module>
-      <module>springboot-easyexcel</module>
-        <module>springboot-apollo</module>
-        <module>springboot-mq-idempotent-consume</module>
-        <module>springboot-unit-resp</module>
-        <module>springboot-mybatis-autoId</module>
-        <module>springboot-code-authorization</module>
-        <module>springboot-chaincontext</module>
-        <module>springboot-generate-sqlscript</module>
-        <module>springboot-mybatisplus-tenant</module>
-        <module>springboot-xxl-job-executor</module>
-        <module>springboot-aop-spel</module>
-        <module>springboot-custom-eureka</module>
-        <module>springboot-sentinel</module>
-        <module>springboot-transation-after-commit</module>
-        <module>springboot-agent</module>
-        <module>springboot-arthas</module>
-        <module>springboot-datasouce-encrypt</module>
-        <module>springboot-feign-servicename-route</module>
-        <module>springboot-influxdb</module>
-        <module>springboot-registrationcenter-switch</module>
-        <module>springboot-spi-ioc</module>
-        <module>springboot-maven-plugin</module>
-        <module>springboot-custom-actuator-endpoint</module>
-        <module>springboot-scan-thirdparty-service</module>
-        <module>springboot-spi-enhance</module>
-        <module>springboot-desensitization</module>
-        <module>springboot-circuit-breaker</module>
-        <module>springboot-exception</module>
-        <module>springboot-proguard</module>
-        <module>springboot-sync-apollo</module>
-        <module>springboot-transaction-invalid-case</module>
-        <module>springboot-interceptor-order</module>
-        <module>springboot-cor</module>
-        <module>springboot-registerSingleton-aop-invalid</module>
-        <module>springboot-git-commit</module>
-        <module>springboot-kafka-template</module>
-        <module>springboot-p6spy</module>
-        <module>springboot-comparedata</module>
-        <module>springboot-mysql-virtual-column</module>
-        <module>springboot-pipeline</module>
-        <module>springboot-cache</module>
-        <module>springboot-argument-resolver</module>
-        <module>springboot-import-bean</module>
-        <module>springboot-localcache-redis-sync</module>
-        <module>springboot-db-check</module>
-        <module>springboot-datasource-hot-switchover</module>
+<!--        <module>springboot-office-preview</module>-->
+<!--        <module>springboot-prometheus</module>-->
+<!--        <module>springboot-downgrade</module>-->
+<!--        <module>springboot-docker</module>-->
+<!--        <module>springboot-exclude-web</module>-->
+<!--        <module>springboot-easyexcel</module>-->
+<!--        <module>springboot-apollo</module>-->
+<!--        <module>springboot-mq-idempotent-consume</module>-->
+<!--        <module>springboot-unit-resp</module>-->
+<!--        <module>springboot-mybatis-autoId</module>-->
+<!--        <module>springboot-code-authorization</module>-->
+<!--        <module>springboot-chaincontext</module>-->
+<!--        <module>springboot-generate-sqlscript</module>-->
+<!--        <module>springboot-mybatisplus-tenant</module>-->
+<!--        <module>springboot-xxl-job-executor</module>-->
+<!--        <module>springboot-aop-spel</module>-->
+<!--        <module>springboot-custom-eureka</module>-->
+<!--        <module>springboot-sentinel</module>-->
+<!--        <module>springboot-transation-after-commit</module>-->
+<!--        <module>springboot-agent</module>-->
+<!--        <module>springboot-arthas</module>-->
+<!--        <module>springboot-datasouce-encrypt</module>-->
+<!--        <module>springboot-feign-servicename-route</module>-->
+<!--        <module>springboot-influxdb</module>-->
+<!--        <module>springboot-registrationcenter-switch</module>-->
+<!--        <module>springboot-spi-ioc</module>-->
+<!--        <module>springboot-maven-plugin</module>-->
+<!--        <module>springboot-custom-actuator-endpoint</module>-->
+<!--        <module>springboot-scan-thirdparty-service</module>-->
+<!--        <module>springboot-spi-enhance</module>-->
+<!--        <module>springboot-desensitization</module>-->
+<!--        <module>springboot-circuit-breaker</module>-->
+<!--        <module>springboot-exception</module>-->
+<!--        <module>springboot-proguard</module>-->
+<!--        <module>springboot-sync-apollo</module>-->
+<!--        <module>springboot-transaction-invalid-case</module>-->
+<!--        <module>springboot-interceptor-order</module>-->
+<!--        <module>springboot-cor</module>-->
+<!--        <module>springboot-registerSingleton-aop-invalid</module>-->
+<!--        <module>springboot-git-commit</module>-->
+<!--        <module>springboot-kafka-template</module>-->
+<!--        <module>springboot-p6spy</module>-->
+<!--        <module>springboot-comparedata</module>-->
+<!--        <module>springboot-mysql-virtual-column</module>-->
+<!--        <module>springboot-pipeline</module>-->
+<!--        <module>springboot-cache</module>-->
+<!--        <module>springboot-argument-resolver</module>-->
+<!--        <module>springboot-import-bean</module>-->
+<!--        <module>springboot-localcache-redis-sync</module>-->
+<!--        <module>springboot-db-check</module>-->
+<!--        <module>springboot-datasource-hot-switchover</module>-->
         <module>springboot-jar-merge</module>
-        <module>springboot-json-format</module>
-        <module>springboot-apt</module>
-        <module>springboot-aop</module>
-        <module>springboot-apt-ast</module>
-        <module>springboot-springplugin-strategy</module>
-        <module>springboot-kafka-broadcast</module>
-        <module>springboot-service-locator</module>
-        <module>springboot-service-locator/springboot-sms-tencent</module>
-        <module>springboot-ribbon-loadbalance</module>
-        <module>springboot-ribbon-loadbalance/springboot-ribbon-loadbalance-framework</module>
-        <module>springboot-bean-refresh</module>
-        <module>springboot-localdata-sync</module>
-        <module>springboot-multinested-json-parse</module>
-        <module>springboot-gateway-simple-gray</module>
-        <module>springboot-dynamic-aop</module>
-        <module>springboot-filter-hot-loading</module>
-        <module>springboot-custom-spi</module>
-        <module>springboot-arthas-tunnel</module>
-        <module>springboot-named-context-factory</module>
-        <module>springboot-has-features</module>
-        <module>springboot-testcontainers</module>
-        <module>springboot-jmh</module>
-        <module>springboot-config-refresh</module>
-        <module>springboot-buffer-trigger</module>
-        <module>springboot-jsonview</module>
-        <module>springboot-thirdparty-bean-replace</module>
-        <module>springboot-pipeline-valve</module>
-        <module>springboot-event-condition</module>
-        <module>springboot-el</module>
-        <module>springboot-json-render</module>
-        <module>springboot-kafka-forward</module>
-        <module>springboot-validate</module>
-        <module>springboot-fetch-version</module>
-        <module>springboot-db-readwrite-splitting</module>
-        <module>springboot-togglz</module>
+<!--        <module>springboot-json-format</module>-->
+<!--        <module>springboot-apt</module>-->
+<!--        <module>springboot-aop</module>-->
+<!--        <module>springboot-apt-ast</module>-->
+<!--        <module>springboot-springplugin-strategy</module>-->
+<!--        <module>springboot-kafka-broadcast</module>-->
+<!--        <module>springboot-service-locator</module>-->
+<!--        <module>springboot-service-locator/springboot-sms-tencent</module>-->
+<!--        <module>springboot-ribbon-loadbalance</module>-->
+<!--        <module>springboot-ribbon-loadbalance/springboot-ribbon-loadbalance-framework</module>-->
+<!--        <module>springboot-bean-refresh</module>-->
+<!--        <module>springboot-localdata-sync</module>-->
+<!--        <module>springboot-multinested-json-parse</module>-->
+<!--        <module>springboot-gateway-simple-gray</module>-->
+<!--        <module>springboot-dynamic-aop</module>-->
+<!--        <module>springboot-filter-hot-loading</module>-->
+<!--        <module>springboot-custom-spi</module>-->
+<!--        <module>springboot-arthas-tunnel</module>-->
+<!--        <module>springboot-named-context-factory</module>-->
+<!--        <module>springboot-has-features</module>-->
+<!--        <module>springboot-testcontainers</module>-->
+<!--        <module>springboot-jmh</module>-->
+<!--        <module>springboot-config-refresh</module>-->
+<!--        <module>springboot-buffer-trigger</module>-->
+<!--        <module>springboot-jsonview</module>-->
+<!--        <module>springboot-thirdparty-bean-replace</module>-->
+<!--        <module>springboot-pipeline-valve</module>-->
+<!--        <module>springboot-event-condition</module>-->
+<!--        <module>springboot-el</module>-->
+<!--        <module>springboot-json-render</module>-->
+<!--        <module>springboot-kafka-forward</module>-->
+<!--        <module>springboot-validate</module>-->
+<!--        <module>springboot-fetch-version</module>-->
+<!--        <module>springboot-db-readwrite-splitting</module>-->
+<!--        <module>springboot-togglz</module>-->
         <module>springboot-pf4j</module>
         <module>springboot-request-log</module>
-        <module>springboot-swagger-parse</module>
-        <module>springboot-chain</module>
-        <module>springboot-encrypt</module>
-        <module>springboot-sse</module>
-        <module>springboot-prop-out-config</module>
-        <module>sprinboot-logback-env-isolate</module>
-        <module>springboot-masking</module>
-        <module>springboot-3rd-isolate</module>
-        <module>springboot-json-mix-in</module>
+<!--        <module>springboot-swagger-parse</module>-->
+<!--        <module>springboot-chain</module>-->
+<!--        <module>springboot-encrypt</module>-->
+<!--        <module>springboot-sse</module>-->
+<!--        <module>springboot-prop-out-config</module>-->
+<!--        <module>sprinboot-logback-env-isolate</module>-->
+<!--        <module>springboot-masking</module>-->
+<!--        <module>springboot-3rd-isolate</module>-->
+<!--        <module>springboot-json-mix-in</module>-->
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -266,9 +266,9 @@
                 <version>${cglib.version}</version>
             </dependency>
             <dependency>
-              <groupId>org.modelmapper</groupId>
-              <artifactId>modelmapper</artifactId>
-              <version>${modelmapper.version}</version>
+                <groupId>org.modelmapper</groupId>
+                <artifactId>modelmapper</artifactId>
+                <version>${modelmapper.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -639,13 +639,11 @@
             </dependency>
 
 
-
             <dependency>
                 <groupId>ognl</groupId>
                 <artifactId>ognl</artifactId>
                 <version>${ognl.version}</version>
             </dependency>
-
 
 
         </dependencies>
@@ -666,7 +664,6 @@
     </dependencies>
 
 
-
     <!-- 阿里云maven仓库 -->
     <repositories>
         <repository>
@@ -681,6 +678,22 @@
             <id>spring-libs-snapshot</id>
             <name>Spring Snapshot Repository</name>
             <url>https://repo.spring.io/libs-milestone</url>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>aliyun-central</id>
+            <name>Aliyun Central</name>
+            <url>https://maven.aliyun.com/repository/central</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
     <pluginRepositories>
