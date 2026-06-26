@@ -7,6 +7,7 @@ import com.github.lybgeek.test.util.RestExecutors;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,16 +21,22 @@ public class UserController {
 
     @GetMapping("{id}")
     @ApiOperation(value = "根据ID查找用户")
-    @ApiImplicitParam(name="id",defaultValue = "1",value="id", paramType = "path")
-    public User getById(@PathVariable("id") Long id){
-        return RestExecutors.sumbit(() -> userClient.getById(1L));
+    @ApiImplicitParam(name = "id", defaultValue = "1", value = "id", paramType = "path")
+    public User getById(@PathVariable("id") Long id) {
+        return RestExecutors.sumbit(() -> userClient.getById(id));
     }
 
 
     @PostMapping
     @ApiOperation(value = "保存用户")
-    public boolean save(@Validated @RequestBody User user){
-        return RestExecutors.sumbit(()-> userClient.save(user));
+    public boolean save(@Validated @RequestBody User user) {
+        return RestExecutors.sumbit(() -> userClient.save(user));
     }
 
+    @GetMapping("asyncTask")
+    @ApiOperation(value = "异步任务")
+    @Async
+    public void asyncTask() {
+        int i = 1 / 0;
+    }
 }
