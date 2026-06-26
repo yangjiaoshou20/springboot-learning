@@ -1,6 +1,5 @@
 package com.github.lybgeek.exception.handler;
 
-
 import com.github.lybgeek.exception.BizException;
 import com.github.lybgeek.exception.model.ValidMsg;
 import com.github.lybgeek.exception.util.ExceptionUtil;
@@ -12,15 +11,17 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-
+import org.springframework.web.servlet.NoHandlerFoundException;
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -152,5 +153,25 @@ public class GlobalExceptionBaseHandler {
                 HttpStatus.BAD_REQUEST.value());
     }
 
+    /**
+     * 处理404异常（接口不存在）
+     * 注意：需要在application.yml中配置spring.mvc.throw-exception-if-no-handler-found=true
+     */
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public AjaxResult<?> handleNoHandlerFoundException(NoHandlerFoundException e) {
+        log.error("访问的接口不存在：{} {}", e.getHttpMethod(), e.getRequestURL(), e);
+        return AjaxResult.error("您访问的接口不存在，请检查URL是否正确", HttpStatus.NOT_FOUND.value());
+    }
+
+    /**
+     * 处理405异常（请求方法不支持）
+     */
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public AjaxResult<?> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
+        // 获取支持的请求方法
+        String supportedMethods = Arrays.toString(e.getSupportedMethods());
+        log.error("请求方法不支持：当前方法={}，支持的方法={}", e.getMethod(), supportedMethods, e);
+        return AjaxResult.error("请求方法不支持，支持的方法：" + supportedMethods, HttpStatus.METHOD_NOT_ALLOWED.value());
+    }
 
 }
